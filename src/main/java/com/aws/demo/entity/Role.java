@@ -3,8 +3,12 @@ package com.aws.demo.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import com.aws.demo.permissoes.PermissaoEnum;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,8 +23,12 @@ public class Role implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private  Long id;
 	
-	@Column(unique = true , length = 20)
-	private String nome;
+	@Column
+	@Enumerated(EnumType.STRING)
+	private PermissaoEnum nome;
+	
+	@ManyToMany(mappedBy = "roles")
+	private List<Usuario> usuarios;
 	
 	public Long getId() {
 		return id;
@@ -30,11 +38,12 @@ public class Role implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
+
+	public PermissaoEnum getNome() {
 		return nome;
 	}
 
-	public void setNome(String nome) {
+	public void setNome(PermissaoEnum nome) {
 		this.nome = nome;
 	}
 
@@ -46,7 +55,6 @@ public class Role implements Serializable {
 		this.usuarios = usuarios;
 	}
 
-	@ManyToMany(mappedBy = "roles")
-	private List<Usuario> usuarios;
+	
 
 }
