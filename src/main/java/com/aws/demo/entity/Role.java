@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.aws.demo.permissoes.PermissaoEnum;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,7 +29,10 @@ public class Role implements Serializable {
 	private PermissaoEnum nome;
 	
 	@ManyToMany(mappedBy = "roles")
+	@JsonBackReference
 	private List<Usuario> usuarios;
+	
+	
 	
 	public Long getId() {
 		return id;
