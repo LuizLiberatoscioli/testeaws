@@ -1,4 +1,4 @@
-package com.aws.demo.service;
+package com.aws.demo.entity;
 
 
 public class UsuarioAutenticado {

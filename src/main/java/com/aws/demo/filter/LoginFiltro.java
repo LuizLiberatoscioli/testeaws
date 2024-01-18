@@ -11,8 +11,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.aws.demo.entity.UsuarioAutenticado;
 import com.aws.demo.service.AutenticacaoService;
-import com.aws.demo.service.UsuarioAutenticado;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.FilterChain;
@@ -45,7 +45,7 @@ public class LoginFiltro extends AbstractAuthenticationProcessingFilter{
 	                                            FilterChain filterChain,
 	                                            Authentication authentication){
 
-	        AutenticacaoService.addJWToken(httpServletResponse, getFilterName());
+	        AutenticacaoService.addJWToken(httpServletResponse, authentication);
 	    }
 
 }
