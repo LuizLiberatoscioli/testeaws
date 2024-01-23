@@ -1,6 +1,7 @@
 package com.aws.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -47,6 +48,10 @@ public class UsuarioService {
 		
 		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 		return this.iUsuarioRepository.save(usuario);
+	}
+	
+	public Optional<Usuario> obterUsuarioId(Long usuarioId ) {
+		return this.iUsuarioRepository.findById(usuarioId);
 	}
 	
 	public void deletarUsuario (Usuario usuario) {

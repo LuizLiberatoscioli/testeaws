@@ -60,5 +60,54 @@ public class Tarefa implements Serializable{
 	@Column
 	private LocalTime tempoRealizado;
 	
+	private Tarefa(TarefaBuilder builder) {
+		this.quantidadeHorasEstimadas = builder.quantidadeHorasEstimadas;
+		this.status = builder.status;
+		this.titulo = builder.titulo;
+		this.descricao = builder.descricao;
+		this.responsavel = builder.responsavel;
+		this.criador = builder.criador;
+	}
+	
+	public static class TarefaBuilder {
+		private int quantidadeHorasEstimadas;
+		private TarefasStatusEnum status;
+		private String titulo;
+		private String descricao;
+		private Usuario responsavel;
+		private Usuario criador;
+		
+		public TarefaBuilder setQuantidadeHorasEstimadas(int quantidadeHorasEstimadas) {
+			this.quantidadeHorasEstimadas = quantidadeHorasEstimadas;
+			return this;
+		}
+		
+		public TarefaBuilder setStatus(TarefasStatusEnum status) {
+			this.status = status;
+			return this;
+		}
+		public TarefaBuilder setTitulo (String titulo) {
+			this.titulo = titulo;
+			return this;
+		}
+		public TarefaBuilder setDescricao(String descricao) {
+			this.descricao = descricao;
+			return this;
+		}
+		public TarefaBuilder setResponsavel (Usuario responsavel) {
+			this.responsavel = responsavel ;
+			return this;
+		}
+		public TarefaBuilder setCriador (Usuario criador) {
+			this.criador = criador;
+			return this;
+		}
+	
+		public Tarefa build() {
+			return new Tarefa(this);
+		}
+		
+	}
+	
 
 }
