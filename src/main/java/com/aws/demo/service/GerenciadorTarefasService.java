@@ -3,6 +3,7 @@ package com.aws.demo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.aws.demo.Status.TarefasStatusEnum;
 import com.aws.demo.entity.Tarefa;
 import com.aws.demo.repository.GereciadorTarefasRepository;
 
@@ -23,10 +24,9 @@ public class GerenciadorTarefasService {
 		
 		Tarefa tarefa = new Tarefa.TarefaBuilder()
 				.setQuantidadeHorasEstimadas(request.getQuantidadeHorasEstimadas())
-				.setStatus(request.getStatus())
+				.setStatus(TarefasStatusEnum.CRIADA)
 				.setTitulo(request.getTitulo())
 				.setDescricao(request.getDescricao())
-				.setResponsavel(usuarioService.obterUsuarioId(request.getResponsavelId()).get())
 				.setCriador(usuarioService.obterUsuarioId(request.getCriadorId()).get())
 				.build();
 		

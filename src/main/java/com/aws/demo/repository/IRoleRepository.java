@@ -9,6 +9,6 @@ import com.aws.demo.permissoes.PermissaoEnum;
 @Repository
 public interface IRoleRepository extends JpaRepository<Role, Long>{
 	
-	Role findByname(PermissaoEnum nome);
+	Role findByNome(PermissaoEnum nome);
 
 }

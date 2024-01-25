@@ -32,7 +32,7 @@ public class UsuarioService {
 		
 		usuario.getRoles()
 			.stream()
-			.map(role -> iRoleRepository.findByname(role.getNome())).toList());
+			.map(role -> iRoleRepository.findByNome(role.getNome())).toList());
 		
 		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 		return this.iUsuarioRepository.save(usuario);
@@ -44,7 +44,7 @@ public class UsuarioService {
 				
 				usuario.getRoles()
 					.stream()
-					.map(role -> iRoleRepository.findByname(role.getNome())).toList());
+					.map(role -> iRoleRepository.findByNome(role.getNome())).toList());
 		
 		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 		return this.iUsuarioRepository.save(usuario);

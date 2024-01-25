@@ -1,16 +1,10 @@
 package request;
 
-import com.aws.demo.Status.TarefasStatusEnum;
-
 public class CadastrarTarefaRequest {
 
 	private String titulo;
 
 	private String descricao;
-
-	private TarefasStatusEnum status;
-
-	private Long responsavelId;
 
 	private Long criadorId;
 
@@ -30,22 +24,6 @@ public class CadastrarTarefaRequest {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public TarefasStatusEnum getStatus() {
-		return status;
-	}
-
-	public void setStatus(TarefasStatusEnum status) {
-		this.status = status;
-	}
-
-	public Long getResponsavelId() {
-		return responsavelId;
-	}
-
-	public void setResponsavelId(Long responsavelId) {
-		this.responsavelId = responsavelId;
 	}
 
 	public Long getCriadorId() {
