@@ -1,6 +1,10 @@
 package com.aws.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.aws.demo.Status.TarefasStatusEnum;
@@ -32,6 +36,10 @@ public class GerenciadorTarefasService {
 		
 		return this.gereciadorTarefasRepository.save(tarefa);
 		
+	}
+	
+	public Page<Tarefa> obtemTarefas(String titulo , Pageable pegeable){
+		return this.gereciadorTarefasRepository.findByTituloContaining(titulo, pegeable);
 	}
 
 	

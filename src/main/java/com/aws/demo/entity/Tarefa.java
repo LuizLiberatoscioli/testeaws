@@ -57,8 +57,6 @@ public class Tarefa implements Serializable{
 	@UpdateTimestamp
 	private LocalTime dataAtualizacao;
 	
-	@Column
-	private LocalTime tempoRealizado;
 	
 	private Tarefa(TarefaBuilder builder) {
 		this.quantidadeHorasEstimadas = builder.quantidadeHorasEstimadas;
