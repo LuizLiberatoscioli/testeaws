@@ -43,6 +43,7 @@ public class GerenciadorTarefasController {
 		return new ResponseEntity<>( tarefaSalva, HttpStatus.CREATED);
 	}
 	
+	
 	/*
 	 * @GetMapping public ResponseEntity<List<ObterTarefasResponse>> obterTarefas(
 	 * 
@@ -67,5 +68,50 @@ public class GerenciadorTarefasController {
 	 * 
 	 * }
 	 */
+	 
+	@GetMapping
+    public ResponseEntity<ObterTarefasPaginadaResponse> obterTarefas(
+            @RequestParam(required = false) String titulo,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "3") int size){
+
+       Page<Tarefa> tarefasPaginada = null;
+
+       if ( titulo == null ) {
+           tarefasPaginada = this.gerenciadorTarefasService.obtemTodasTarefas(PageRequest.of(page, size));
+       } else {
+           tarefasPaginada = this.gerenciadorTarefasService.obtemTarefasPorTitulo(titulo, PageRequest.of(page, size));
+       }
+
+        List<ObterTarefasResponse> tarefas = tarefasPaginada
+                .getContent()
+                .stream()
+                .map(tarefa -> {
+                   return ObterTarefasResponse
+                            .builder()
+                            .id(tarefa.getId())
+                            .titulo(tarefa.getTitulo())
+                            .descricao(tarefa.getDescricao())
+                            .responsavel(tarefa.getResponsavel() != null ?tarefa.getResponsavel().getUsername() : "NAO_ATRIBUIDA")
+                            .criador(tarefa.getCriador().getUsername())
+                            .status(tarefa.getStatus())
+                            .quantidadeHorasEstimadas(tarefa.getQuantidadeHorasEstimadas())
+                            .quantidadeHorasRealizada(tarefa.getQuantidadeHorasRealizada())
+                            .dataCadasto(tarefa.getDataCadasto())
+                            .dataAtualizacao(tarefa.getDataAtualizacao())
+                            .build();
+                })
+                .toList();
+
+        ObterTarefasPaginadaResponse response = ObterTarefasPaginadaResponse
+                .builder()
+                .paginaAtual(tarefasPaginada.getNumber())
+                .totalPaginas(tarefasPaginada.getTotalPages())
+                .totalItens(tarefasPaginada.getTotalElements())
+                .tarefas(tarefas)
+                .build();
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
 }
