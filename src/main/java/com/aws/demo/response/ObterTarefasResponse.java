@@ -35,6 +35,30 @@ public class ObterTarefasResponse {
 		private Usuario responsavel;
 		private Usuario criador;
 		
+		public int getQuantidadeHorasEstimadas() {
+			return quantidadeHorasEstimadas;
+		}
+
+		public TarefasStatusEnum getStatus() {
+			return status;
+		}
+
+		public String getTitulo() {
+			return titulo;
+		}
+
+		public String getDescricao() {
+			return descricao;
+		}
+
+		public Usuario getResponsavel() {
+			return responsavel;
+		}
+
+		public Usuario getCriador() {
+			return criador;
+		}
+
 		public ObterTarefasResponseBuilder setQuantidadeHorasEstimadas(int quantidadeHorasEstimadas) {
 			this.quantidadeHorasEstimadas = quantidadeHorasEstimadas;
 			return this;

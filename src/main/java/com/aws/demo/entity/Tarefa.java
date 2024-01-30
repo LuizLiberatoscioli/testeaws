@@ -21,6 +21,90 @@ import jakarta.persistence.Table;
 @Table(name = "tarefas")
 public class Tarefa implements Serializable{
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public TarefasStatusEnum getStatus() {
+		return status;
+	}
+
+	public void setStatus(TarefasStatusEnum status) {
+		this.status = status;
+	}
+
+	public Usuario getResponsavel() {
+		return responsavel;
+	}
+
+	public void setResponsavel(Usuario responsavel) {
+		this.responsavel = responsavel;
+	}
+
+	public Usuario getCriador() {
+		return criador;
+	}
+
+	public void setCriador(Usuario criador) {
+		this.criador = criador;
+	}
+
+	public int getQuantidadeHorasEstimadas() {
+		return quantidadeHorasEstimadas;
+	}
+
+	public void setQuantidadeHorasEstimadas(int quantidadeHorasEstimadas) {
+		this.quantidadeHorasEstimadas = quantidadeHorasEstimadas;
+	}
+
+	public Integer getQuantidadeHorasRealizada() {
+		return quantidadeHorasRealizada;
+	}
+
+	public void setQuantidadeHorasRealizada(Integer quantidadeHorasRealizada) {
+		this.quantidadeHorasRealizada = quantidadeHorasRealizada;
+	}
+
+	public LocalTime getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalTime dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+	public LocalTime getDataAtualizacao() {
+		return dataAtualizacao;
+	}
+
+	public void setDataAtualizacao(LocalTime dataAtualizacao) {
+		this.dataAtualizacao = dataAtualizacao;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
