@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aws.demo.entity.Tarefa;
 import com.aws.demo.response.CadastrarTarefaResponse;
+import com.aws.demo.response.ObterTarefasPaginadaResponse;
+import com.aws.demo.response.ObterTarefasPaginadaResponse.ObterTarefasPaginadaResponseBuilder;
 import com.aws.demo.response.ObterTarefasResponse;
 import com.aws.demo.response.ObterTarefasResponse.ObterTarefasResponseBuilder;
 import com.aws.demo.service.GerenciadorTarefasService;
@@ -56,6 +58,7 @@ public class GerenciadorTarefasController {
 	  PageRequest.of(pagina, size));
 	  
 	 List<ObterTarefasResponse> response = tarefas
+	  .getContent()
 	  .stream()
 	  .map(tarefa -> {
 		  
@@ -64,8 +67,7 @@ public class GerenciadorTarefasController {
 		  builder.setDescricao(tarefa.getDescricao());
 		  builder.setStatus(tarefa.getStatus());
 		  builder.setResponsavel(tarefa.getResponsavel());
-		  
-		  
+
 		  builder.setCriador(tarefa.getCriador());
 		  builder.setQuantidadeHorasEstimadas(tarefa.getQuantidadeHorasEstimadas());
 		  
@@ -74,13 +76,16 @@ public class GerenciadorTarefasController {
 	  
 	  })
 	  .collect(Collectors.toList());
-	return new ResponseEntity<>(response, HttpStatus.OK);
 	 
-	  
+		/*
+		 * ObterTarefasPaginadaResponseBuilder builder = new
+		 * ObterTarefasPaginadaResponseBuilder();
+		 * builder.setObterTarefasResponse(response)
+		 */
+	 
+	 
+	return new ResponseEntity<>(response, HttpStatus.OK);
 	  
 	  }
-	 
-	 
-
 
 }
