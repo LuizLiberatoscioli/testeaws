@@ -48,43 +48,40 @@ public class GerenciadorTarefasController {
 	}
 	
 	  @GetMapping 
-	  public ResponseEntity<List<ObterTarefasResponse>> obterTarefas( 
+	  public ResponseEntity<ObterTarefasPaginadaResponse> obterTarefas( 
 			  @RequestParam(required = true) String titulo,
 			  @RequestParam(defaultValue = "0") int pagina,
 			  @RequestParam(defaultValue = "3") int size){
-	  
-	  
-	  Page<Tarefa> tarefas = this.gerenciadorTarefasService.obtemTarefas(titulo,
+	    
+	  Page<Tarefa> tarefasPaginada = this.gerenciadorTarefasService.obtemTarefas(titulo,
 	  PageRequest.of(pagina, size));
 	  
-	 List<ObterTarefasResponse> response = tarefas
+	 List<ObterTarefasResponse> tarefas = tarefasPaginada
 	  .getContent()
 	  .stream()
 	  .map(tarefa -> {
 		  
-		  ObterTarefasResponseBuilder builder = new ObterTarefasResponseBuilder();
-		  builder.setTitulo(tarefa.getTitulo());
-		  builder.setDescricao(tarefa.getDescricao());
-		  builder.setStatus(tarefa.getStatus());
-		  builder.setResponsavel(tarefa.getResponsavel());
-
-		  builder.setCriador(tarefa.getCriador());
-		  builder.setQuantidadeHorasEstimadas(tarefa.getQuantidadeHorasEstimadas());
+		  ObterTarefasResponseBuilder tarefasResponseBuilder = new ObterTarefasResponseBuilder();
+		  tarefasResponseBuilder.setTitulo(tarefa.getTitulo());
+		  tarefasResponseBuilder.setDescricao(tarefa.getDescricao());
+		  tarefasResponseBuilder.setStatus(tarefa.getStatus());
+		  tarefasResponseBuilder.setResponsavel(tarefa.getResponsavel());
+		  tarefasResponseBuilder.setCriador(tarefa.getCriador());
+		  tarefasResponseBuilder.setQuantidadeHorasEstimadas(tarefa.getQuantidadeHorasEstimadas());
 		  
-		  return builder.build();
+		  return tarefasResponseBuilder.build();
 		  
-	  
 	  })
 	  .collect(Collectors.toList());
 	 
-		/*
-		 * ObterTarefasPaginadaResponseBuilder builder = new
-		 * ObterTarefasPaginadaResponseBuilder();
-		 * builder.setObterTarefasResponse(response)
-		 */
-	 
-	 
-	return new ResponseEntity<>(response, HttpStatus.OK);
+		  ObterTarefasPaginadaResponseBuilder tarefasPaginadaBuilder = new ObterTarefasPaginadaResponseBuilder();
+		  
+		  tarefasPaginadaBuilder.setPaginaAtual(tarefasPaginada.getNumber());
+		  tarefasPaginadaBuilder.setTotalPaginas(tarefasPaginada.getTotalPages());
+		  tarefasPaginadaBuilder.setTotalItens(tarefasPaginada.getTotalElements());
+		  tarefasPaginadaBuilder.setObterTarefas(tarefas);
+	 	 
+	return new ResponseEntity<>(tarefasPaginadaBuilder.build(), HttpStatus.OK);
 	  
 	  }
 

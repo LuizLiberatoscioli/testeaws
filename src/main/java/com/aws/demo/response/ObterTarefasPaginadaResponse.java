@@ -4,9 +4,9 @@ import java.util.List;
 
 public class ObterTarefasPaginadaResponse {
 	
-	private String paginaAtual;
-	private String totalItens;
-	private String totalPaginas;
+	private int paginaAtual;
+	private Long totalItens;
+	private int totalPaginas;
 	private List<ObterTarefasResponse> tarefas;
 	
 	public List<ObterTarefasResponse> getTarefas() {
@@ -27,54 +27,54 @@ public class ObterTarefasPaginadaResponse {
 	}
 	
 	
-	public String getPaginaAtual() {
+	public int getPaginaAtual() {
 		return paginaAtual;
 	}
-	public void setPaginaAtual(String paginaAtual) {
+	public void setPaginaAtual(int paginaAtual) {
 		this.paginaAtual = paginaAtual;
 	}
-	public String getTotalItens() {
+	public Long getTotalItens() {
 		return totalItens;
 	}
-	public void setTotalItens(String totalItens) {
+	public void setTotalItens(Long totalItens) {
 		this.totalItens = totalItens;
 	}
-	public String getTotalPaginas() {
+	public int getTotalPaginas() {
 		return totalPaginas;
 	}
-	public void setTotalPaginas(String totalPaginas) {
+	public void setTotalPaginas(int totalPaginas) {
 		this.totalPaginas = totalPaginas;
 	}
 	
 	public static class ObterTarefasPaginadaResponseBuilder {
-		private String paginaAtual;
-		private String totalItens;
-		private String totalPaginas;
+		private int paginaAtual;
+		private Long totalItens;
+		private int totalPaginas;
 		private List<ObterTarefasResponse> tarefas;
 		
 		
-		public String getPaginaAtual () {
+		public int getPaginaAtual () {
 			return paginaAtual;
 		}
 		
-		public ObterTarefasPaginadaResponseBuilder setPaginaAtual (String paginaAtual) {
+		public ObterTarefasPaginadaResponseBuilder setPaginaAtual (int paginaAtual) {
 			this.paginaAtual = paginaAtual;
 			return this;
 		}
 		
-		public String getTotalItens () {
+		public Long getTotalItens () {
 			return totalItens;
 		}
-		public ObterTarefasPaginadaResponseBuilder setTotalItens (String totalItens) {
+		public ObterTarefasPaginadaResponseBuilder setTotalItens (Long totalItens) {
 			this.totalItens = totalItens;
 			return this;
 		}
 		
-		public String totalPaginas () {
+		public int totalPaginas () {
 			return totalPaginas;
 		}
 		
-		public ObterTarefasPaginadaResponseBuilder setTotalPaginas (String totalPaginas) {
+		public ObterTarefasPaginadaResponseBuilder setTotalPaginas (int totalPaginas) {
 			this.totalPaginas = totalPaginas;
 			return this;
 		}
@@ -82,13 +82,13 @@ public class ObterTarefasPaginadaResponse {
 			return tarefas;
 			
 		}
-		public ObterTarefasPaginadaResponseBuilder setObterTarefasResponse (List<ObterTarefasResponse> tarefas) {
+		public ObterTarefasPaginadaResponseBuilder setObterTarefas (List<ObterTarefasResponse> tarefas) {
 			this.tarefas = tarefas;
 			return this;
 			
 		}
 		
-		public  ObterTarefasPaginadaResponse builder () {
+		public  ObterTarefasPaginadaResponse build () {
 			return new ObterTarefasPaginadaResponse(this);
 		}
 	}
