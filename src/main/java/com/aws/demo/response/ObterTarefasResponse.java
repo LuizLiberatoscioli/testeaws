@@ -19,6 +19,7 @@ public class ObterTarefasResponse {
 	private LocalTime dataAtualizacao;
 	
 	private ObterTarefasResponse(ObterTarefasResponseBuilder builder) {
+		this.id = id;
 		this.quantidadeHorasEstimadas = builder.quantidadeHorasEstimadas;
 		this.status = builder.status;
 		this.titulo = builder.titulo;
@@ -28,12 +29,17 @@ public class ObterTarefasResponse {
 	}
 	
 	public static class ObterTarefasResponseBuilder {
+		private Long id;
 		private int quantidadeHorasEstimadas;
 		private TarefasStatusEnum status;
 		private String titulo;
 		private String descricao;
 		private Usuario responsavel;
 		private Usuario criador;
+		
+		public Long getId () {
+			return id;
+		}
 		
 		public int getQuantidadeHorasEstimadas() {
 			return quantidadeHorasEstimadas;
@@ -57,6 +63,11 @@ public class ObterTarefasResponse {
 
 		public Usuario getCriador() {
 			return criador;
+		}
+		
+		public ObterTarefasResponseBuilder setId (Long ind) {
+			this.id = id;
+			return this;
 		}
 
 		public ObterTarefasResponseBuilder setQuantidadeHorasEstimadas(int quantidadeHorasEstimadas) {

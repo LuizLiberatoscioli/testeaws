@@ -2,6 +2,7 @@ package com.aws.demo.entity;
 
 import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -20,6 +21,29 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "tarefas")
 public class Tarefa implements Serializable{
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(criador, dataAtualizacao, dataCadastro, descricao, id, quantidadeHorasEstimadas,
+				quantidadeHorasRealizada, responsavel, status, titulo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tarefa other = (Tarefa) obj;
+		return Objects.equals(criador, other.criador) && Objects.equals(dataAtualizacao, other.dataAtualizacao)
+				&& Objects.equals(dataCadastro, other.dataCadastro) && Objects.equals(descricao, other.descricao)
+				&& Objects.equals(id, other.id) && quantidadeHorasEstimadas == other.quantidadeHorasEstimadas
+				&& Objects.equals(quantidadeHorasRealizada, other.quantidadeHorasRealizada)
+				&& Objects.equals(responsavel, other.responsavel) && status == other.status
+				&& Objects.equals(titulo, other.titulo);
+	}
 
 	public Long getId() {
 		return id;

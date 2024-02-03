@@ -53,8 +53,15 @@ public class GerenciadorTarefasController {
 			  @RequestParam(defaultValue = "0") int pagina,
 			  @RequestParam(defaultValue = "3") int size){
 	    
-	  Page<Tarefa> tarefasPaginada = this.gerenciadorTarefasService.obtemTarefas(titulo,
-	  PageRequest.of(pagina, size));
+	  Page<Tarefa> tarefasPaginada = null;
+	  
+	  if (titulo == null) {
+		  tarefasPaginada =this.gerenciadorTarefasService.obtemTodasTarefas(
+				  PageRequest.of(pagina, size));
+	  }else {
+		  tarefasPaginada =this.gerenciadorTarefasService.obtemTodasTarefasPorTitulo(titulo,
+				  PageRequest.of(pagina, size));
+	  }
 	  
 	 List<ObterTarefasResponse> tarefas = tarefasPaginada
 	  .getContent()
@@ -62,6 +69,7 @@ public class GerenciadorTarefasController {
 	  .map(tarefa -> {
 		  
 		  ObterTarefasResponseBuilder tarefasResponseBuilder = new ObterTarefasResponseBuilder();
+		  tarefasResponseBuilder.setId(tarefa.getId());
 		  tarefasResponseBuilder.setTitulo(tarefa.getTitulo());
 		  tarefasResponseBuilder.setDescricao(tarefa.getDescricao());
 		  tarefasResponseBuilder.setStatus(tarefa.getStatus());

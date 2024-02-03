@@ -12,6 +12,7 @@ import com.aws.demo.entity.Tarefa;
 import com.aws.demo.repository.GereciadorTarefasRepository;
 
 import jakarta.transaction.Transactional;
+import request.AtualizarTarefaRequest;
 import request.CadastrarTarefaRequest;
 
 @Service
@@ -38,8 +39,28 @@ public class GerenciadorTarefasService {
 		
 	}
 	
-	public Page<Tarefa> obtemTarefas(String titulo , Pageable pegeable){
+	public Page<Tarefa> obtemTodasTarefasPorTitulo(String titulo , Pageable pegeable){
 		return this.gereciadorTarefasRepository.findByTituloContaining(titulo, pegeable);
+	}
+	
+	public Page<Tarefa> obtemTodasTarefas( Pageable pegeable){
+		return this.gereciadorTarefasRepository.findAll( pegeable);
+	}
+	
+	public Tarefa atualizarTarefa(AtualizarTarefaRequest request){
+		
+		Tarefa tarefa = new Tarefa.TarefaBuilder()
+				.setQuantidadeHorasEstimadas(request.getQuantidadeHorasEstimadas())
+				.setStatus(request.getStatus())
+				.setTitulo(request.getTitulo())
+				.setDescricao(request.getDescricao())
+				.build();
+		
+		 return this.gereciadorTarefasRepository.save(tarefa);
+	}
+	
+	public void excluirTarefa(Long id){
+		 this.gereciadorTarefasRepository.deleteById(id);
 	}
 
 	

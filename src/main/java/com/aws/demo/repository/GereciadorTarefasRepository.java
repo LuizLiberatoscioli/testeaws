@@ -13,5 +13,7 @@ import com.aws.demo.entity.Tarefa;
 public interface GereciadorTarefasRepository extends JpaRepository<Tarefa , Long>{
 	
 	Page<Tarefa> findByTituloContaining(String titulo , Pageable pegeable);
+	
+	Page<Tarefa> findAll(Pageable pegeable);
 
 }
