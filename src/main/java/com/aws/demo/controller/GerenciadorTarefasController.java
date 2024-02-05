@@ -9,14 +9,19 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aws.demo.entity.Tarefa;
+import com.aws.demo.entity.Usuario;
+import com.aws.demo.response.AtualizarTarefaResponse;
 import com.aws.demo.response.CadastrarTarefaResponse;
 import com.aws.demo.response.ObterTarefasPaginadaResponse;
 import com.aws.demo.response.ObterTarefasPaginadaResponse.ObterTarefasPaginadaResponseBuilder;
@@ -24,6 +29,7 @@ import com.aws.demo.response.ObterTarefasResponse;
 import com.aws.demo.response.ObterTarefasResponse.ObterTarefasResponseBuilder;
 import com.aws.demo.service.GerenciadorTarefasService;
 
+import request.AtualizarTarefaRequest;
 import request.CadastrarTarefaRequest;
 
 @RestController
@@ -92,5 +98,25 @@ public class GerenciadorTarefasController {
 	return new ResponseEntity<>(tarefasPaginadaBuilder.build(), HttpStatus.OK);
 	  
 	  }
+	  
+	  
+	  @PutMapping(value = "/{id}")
+		public ResponseEntity<AtualizarTarefaResponse> atualizarTarefa(@PathVariable Long id, AtualizarTarefaRequest request){
+			Tarefa tarefaAtualizada = gerenciadorTarefasService.atualizarTarefa(id,request);
+			
+			AtualizarTarefaResponse response = new AtualizarTarefaResponse.AtualizarTarefaResponseBuilder()
+					.setId(tarefaAtualizada.getId())
+					.setTitulo(tarefaAtualizada.getTitulo())
+					.setDescricao(tarefaAtualizada.getDescricao())
+					.setCriador(tarefaAtualizada.getCriador().toString())
+					.build();
+
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		}
+	  
+	  @DeleteMapping(value = "/{id}")
+		public void excluirTarefa(@PathVariable Long id) {
+			gerenciadorTarefasService.excluirTarefa(id);
+		}
 
 }

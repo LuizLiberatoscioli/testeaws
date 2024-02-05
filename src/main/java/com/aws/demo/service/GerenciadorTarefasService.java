@@ -47,13 +47,14 @@ public class GerenciadorTarefasService {
 		return this.gereciadorTarefasRepository.findAll( pegeable);
 	}
 	
-	public Tarefa atualizarTarefa(AtualizarTarefaRequest request){
+	public Tarefa atualizarTarefa(Long id, AtualizarTarefaRequest request){
 		
 		Tarefa tarefa = new Tarefa.TarefaBuilder()
 				.setQuantidadeHorasEstimadas(request.getQuantidadeHorasEstimadas())
 				.setStatus(request.getStatus())
 				.setTitulo(request.getTitulo())
 				.setDescricao(request.getDescricao())
+				.setResponsavel(request.getResponsavel())
 				.build();
 		
 		 return this.gereciadorTarefasRepository.save(tarefa);
