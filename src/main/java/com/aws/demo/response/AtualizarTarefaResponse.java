@@ -9,7 +9,7 @@ public class AtualizarTarefaResponse {
 	private int quantidadeHorasEstimadas;
 	private String status;
 	private String responsavel;
-	private int quantidadeHorasRealizadas;
+	private Integer quantidadeHorasRealizadas;
 	
 	public static class AtualizarTarefaResponseBuilder {
 		private Long id;
@@ -19,7 +19,7 @@ public class AtualizarTarefaResponse {
 		private int quantidadeHorasEstimadas;
 		private String status;
 		private String responsavel;
-		private int quantidadeHorasRealizadas;
+		private Integer quantidadeHorasRealizadas;
 		
 		public AtualizarTarefaResponseBuilder setId (Long id) {
 			this.id = id;
@@ -30,7 +30,7 @@ public class AtualizarTarefaResponse {
 			return quantidadeHorasRealizadas;
 		}
 
-		public void setQuantidadeHorasRealizadas(int quantidadeHorasRealizadas) {
+		public void setQuantidadeHorasRealizadas(Integer quantidadeHorasRealizadas) {
 			this.quantidadeHorasRealizadas = quantidadeHorasRealizadas;
 		}
 
@@ -88,7 +88,7 @@ public class AtualizarTarefaResponse {
 			this.quantidadeHorasEstimadas = quantidadeHorasEstimadas;
 			return this;
 		}
-		public AtualizarTarefaResponseBuilder setQuantidadeHorasRealizada (int quantidadeHorasRealizadas) {
+		public AtualizarTarefaResponseBuilder setQuantidadeHorasRealizada (Integer quantidadeHorasRealizadas) {
 			this.quantidadeHorasRealizadas = quantidadeHorasRealizadas;
 			return this;
 		}
