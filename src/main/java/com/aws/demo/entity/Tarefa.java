@@ -64,6 +64,26 @@ public class Tarefa implements Serializable{
 	public String getDescricao() {
 		return descricao;
 	}
+	
+	public Tarefa() {
+		
+	}
+
+	public Tarefa(Long id, String titulo, String descricao, TarefasStatusEnum status, Usuario responsavel,
+			Usuario criador, int quantidadeHorasEstimadas, Integer quantidadeHorasRealizada, LocalTime dataCadastro,
+			LocalTime dataAtualizacao) {
+		super();
+		this.id = id;
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.status = status;
+		this.responsavel = responsavel;
+		this.criador = criador;
+		this.quantidadeHorasEstimadas = quantidadeHorasEstimadas;
+		this.quantidadeHorasRealizada = quantidadeHorasRealizada;
+		this.dataCadastro = dataCadastro;
+		this.dataAtualizacao = dataAtualizacao;
+	}
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;

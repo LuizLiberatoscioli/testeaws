@@ -109,6 +109,10 @@ public class GerenciadorTarefasController {
 					.setTitulo(tarefaAtualizada.getTitulo())
 					.setDescricao(tarefaAtualizada.getDescricao())
 					.setCriador(tarefaAtualizada.getCriador().toString())
+					.setQuantidadeHorasEstimadas(tarefaAtualizada.getQuantidadeHorasEstimadas())
+					.setStatus(tarefaAtualizada.getStatus().toString())
+					.setResponsavel(tarefaAtualizada.getResponsavel().getUsername())
+					.setQuantidadeHorasRealizada(tarefaAtualizada.getQuantidadeHorasRealizada())
 					.build();
 
 			return new ResponseEntity<>(response, HttpStatus.OK);
