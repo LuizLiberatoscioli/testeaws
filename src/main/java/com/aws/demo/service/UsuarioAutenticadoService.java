@@ -34,9 +34,6 @@ public class UsuarioAutenticadoService implements UserDetailsService{
 				.collect(Collectors.toList());
 		
 		return new User(usuario.getUsername(), usuario.getPassword(), roles);
-				
-				
-		
+					
 	}
-
 }

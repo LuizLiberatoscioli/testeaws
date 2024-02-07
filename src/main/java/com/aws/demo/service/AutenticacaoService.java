@@ -33,7 +33,8 @@ public class AutenticacaoService {
 				.map(role -> role.getAuthority())
 				.collect(Collectors.toList()));
 
-		String jwtToken = Jwts.builder().setSubject(authentication.getName())
+		String jwtToken = Jwts.builder()
+				.setSubject(authentication.getName())
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TOKEN_ONE_HOUR))
 				.signWith(io.jsonwebtoken.SignatureAlgorithm.HS512, JWT_KEY)
 				.addClaims(Claims)
@@ -49,7 +50,9 @@ public class AutenticacaoService {
 
 		if (token != null) {
 
-			Claims user = Jwts.parser().setSigningKey(JWT_KEY).parseClaimsJws(token.replace(BEARER+" " , ""))
+			Claims user = Jwts.parser()
+					.setSigningKey(JWT_KEY)
+					.parseClaimsJws(token.replace(BEARER+" " , ""))
 					.getBody();
 			
 			if (user != null) {
