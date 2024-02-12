@@ -1,10 +1,20 @@
 package request;
 
+import org.hibernate.validator.constraints.Length;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class CadastrarTarefaRequest {
 
+	@NotBlank(message = "{cadastrar.tarefa.request.titulo.obrigatorio}")
 	private String titulo;
+	
+	@Length (max = 50, message = "{cadastrar.tarefa.request.descricao.limite}")
 	private String descricao;
 	private Long criadorId;
+	
+	@NotNull(message = "cadastrar.tarefa.request.quantidadeHorasEstimadas.obrigatorio")
 	private int quantidadeHorasEstimadas;
 
 	public String getTitulo() {

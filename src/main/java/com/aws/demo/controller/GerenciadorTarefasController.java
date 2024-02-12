@@ -29,6 +29,7 @@ import com.aws.demo.response.ObterTarefasResponse;
 import com.aws.demo.response.ObterTarefasResponse.ObterTarefasResponseBuilder;
 import com.aws.demo.service.GerenciadorTarefasService;
 
+import jakarta.validation.Valid;
 import request.AtualizarTarefaRequest;
 import request.CadastrarTarefaRequest;
 
@@ -40,7 +41,7 @@ public class GerenciadorTarefasController {
 	private GerenciadorTarefasService gerenciadorTarefasService;
 	
 	@PostMapping
-	public ResponseEntity<Tarefa> salvarTarefa(@RequestBody CadastrarTarefaRequest request){
+	public ResponseEntity<Tarefa> salvarTarefa(@Valid @RequestBody CadastrarTarefaRequest request){
 		Tarefa tarefaSalva = gerenciadorTarefasService.salvarTarefa(request);
 		
 		CadastrarTarefaResponse response = new CadastrarTarefaResponse.CadastrarTarefaResponseBuilder()
