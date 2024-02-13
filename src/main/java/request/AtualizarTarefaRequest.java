@@ -1,15 +1,26 @@
 package request;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.aws.demo.Status.TarefasStatusEnum;
 import com.aws.demo.entity.Usuario;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class AtualizarTarefaRequest {
 	
+	@NotBlank(message = "{atualizar.tarefa.request.titulo.obrigatorio}")
 	private String titulo;
+	
+	@Length (max = 150, message = "{atualizar.tarefa.request.descricao.limite}")
 	private String descricao;
+	
 	private TarefasStatusEnum status;
 	private Usuario responsavel ;
-	private int quantidadeHorasEstimadas;
+	
+	@NotNull(message = "atualizar.tarefa.request.quantidadeHorasEstimadas.obrigatorio")
+	private Integer quantidadeHorasEstimadas;
 	private Integer quantidadeHorasRealizada;
 	
 	public String getTitulo() {
@@ -69,7 +80,7 @@ public class AtualizarTarefaRequest {
 		private String descricao;
 		private TarefasStatusEnum status;
 		private Usuario responsavel ;
-		private int quantidadeHorasEstimadas;
+		private Integer quantidadeHorasEstimadas;
 		private Integer quantidadeHorasRealizada;
 		
 		public AtualizarTarefaRequestBuilder setTitulo (String titulo) {
@@ -88,7 +99,7 @@ public class AtualizarTarefaRequest {
 			this.responsavel = responsavel;
 			return this;
 		}
-		public AtualizarTarefaRequestBuilder setQuantidadeHorasEstimadas (int quantidadeHorasEstimadas) {
+		public AtualizarTarefaRequestBuilder setQuantidadeHorasEstimadas (Integer quantidadeHorasEstimadas) {
 			this.quantidadeHorasEstimadas = quantidadeHorasEstimadas;
 			return this;
 		}
