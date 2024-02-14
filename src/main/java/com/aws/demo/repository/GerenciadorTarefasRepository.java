@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.aws.demo.entity.Tarefa;
 
 @Repository
-public interface GereciadorTarefasRepository extends JpaRepository<Tarefa , Long>{
+public interface GerenciadorTarefasRepository extends JpaRepository<Tarefa , Long>{
 	
 	Page<Tarefa> findByTituloContaining(String titulo , Pageable pegeable);
 	

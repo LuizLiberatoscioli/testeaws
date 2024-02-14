@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aws.demo.entity.Tarefa;
 import com.aws.demo.entity.Usuario;
+import com.aws.demo.repository.GerenciadorTarefasRepository;
 import com.aws.demo.response.AtualizarTarefaResponse;
 import com.aws.demo.response.CadastrarTarefaResponse;
 import com.aws.demo.response.ObterTarefasPaginadaResponse;
@@ -39,6 +40,9 @@ public class GerenciadorTarefasController {
 	
 	@Autowired
 	private GerenciadorTarefasService gerenciadorTarefasService;
+	
+	@Autowired
+	private GerenciadorTarefasRepository gerenciadorTarefasRepository;
 	
 	@PostMapping
 	public ResponseEntity<Tarefa> salvarTarefa(@Valid @RequestBody CadastrarTarefaRequest request){
@@ -122,6 +126,8 @@ public class GerenciadorTarefasController {
 	  @DeleteMapping(value = "/{id}")
 		public void excluirTarefa(@PathVariable Long id) {
 			gerenciadorTarefasService.excluirTarefa(id);
+			
+			
 		}
 
 }

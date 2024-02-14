@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.aws.demo.Status.TarefasStatusEnum;
 import com.aws.demo.entity.Tarefa;
-import com.aws.demo.repository.GereciadorTarefasRepository;
+import com.aws.demo.repository.GerenciadorTarefasRepository;
 
 import jakarta.transaction.Transactional;
 import request.AtualizarTarefaRequest;
@@ -21,7 +21,7 @@ public class GerenciadorTarefasService {
 	private UsuarioService usuarioService;
 	
 	@Autowired
-	private GereciadorTarefasRepository gereciadorTarefasRepository;
+	private GerenciadorTarefasRepository gereciadorTarefasRepository;
 	
 	public Tarefa salvarTarefa(CadastrarTarefaRequest request) {
 		
