@@ -12,6 +12,8 @@ import com.aws.demo.entity.Tarefa;
 @Repository
 public interface GerenciadorTarefasRepository extends JpaRepository<Tarefa , Long>{
 	
+	Tarefa findByTItuloOrDescricao(String titulo , String descricao);
+	
 	Page<Tarefa> findByTituloContaining(String titulo , Pageable pegeable);
 	
 	Page<Tarefa> findAll(Pageable pegeable);

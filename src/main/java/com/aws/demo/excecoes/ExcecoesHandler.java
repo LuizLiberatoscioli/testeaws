@@ -30,5 +30,37 @@ public class ExcecoesHandler {
 		
 		return new ResponseEntity<>(errorResponseBuilder.build() ,HttpStatus.UNPROCESSABLE_ENTITY);
 	}
+	
+	@ExceptionHandler(NaoPermitidoAlterarStatusException.class)
+	public ResponseEntity<ErrorResponse> naoPermitidoAlterarStatusExceptionHandler (NaoPermitidoAlterarStatusException ex){
+		
+		Map<String, String> response = new HashMap<>();
+		response.put("codigo", ErrosEnum.NAO_PERMITIDO_EXCLUIR.toString());
+		response.put("mensagem", ex.getMessage());
+		
+		ErrorResponseBuilder errorResponseBuilder = new ErrorResponseBuilder();
+		errorResponseBuilder.setErros(Collections.singletonList(response));
+		errorResponseBuilder.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.toString());
+		
+		;
+		
+		return new ResponseEntity<>(errorResponseBuilder.build() ,HttpStatus.UNPROCESSABLE_ENTITY);
+	}
+	
+	@ExceptionHandler(TarefaExistenteException.class)
+	public ResponseEntity<ErrorResponse> tarefaExistenteExceptionHandler (TarefaExistenteException ex){
+		
+		Map<String, String> response = new HashMap<>();
+		response.put("codigo", ErrosEnum.NAO_PERMITIDO_EXCLUIR.toString());
+		response.put("mensagem", ex.getMessage());
+		
+		ErrorResponseBuilder errorResponseBuilder = new ErrorResponseBuilder();
+		errorResponseBuilder.setErros(Collections.singletonList(response));
+		errorResponseBuilder.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.toString());
+		
+		;
+		
+		return new ResponseEntity<>(errorResponseBuilder.build() ,HttpStatus.UNPROCESSABLE_ENTITY);
+	}
 
 }
