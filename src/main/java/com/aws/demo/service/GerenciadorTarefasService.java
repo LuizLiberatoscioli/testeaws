@@ -48,7 +48,7 @@ public class GerenciadorTarefasService {
 	}
 	
 	public Page<Tarefa> obtemTodasTarefasPorTitulo(String titulo , Pageable pegeable){
-		return this.gereciadorTarefasRepository.findByTituloContaining(titulo, pegeable);
+		return this.gereciadorTarefasRepository.findByTituloContainingOrderByDataAtualizacaoDesc(titulo, pegeable);
 	}
 	
 	public Page<Tarefa> obtemTodasTarefas( Pageable pegeable){

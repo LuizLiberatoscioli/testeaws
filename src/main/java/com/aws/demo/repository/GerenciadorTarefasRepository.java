@@ -14,8 +14,8 @@ public interface GerenciadorTarefasRepository extends JpaRepository<Tarefa , Lon
 	
 	Tarefa findByTItuloOrDescricao(String titulo , String descricao);
 	
-	Page<Tarefa> findByTituloContaining(String titulo , Pageable pegeable);
+	Page<Tarefa> findByTituloContainingOrderByDataAtualizacaoDesc(String titulo , Pageable pegeable);
 	
-	Page<Tarefa> findAll(Pageable pegeable);
+	Page<Tarefa> findAllByOrderByDataAtualizacaoDesc(Pageable pegeable);
 
 }
